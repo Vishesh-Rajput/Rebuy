@@ -3,9 +3,13 @@ export default {
   corePlugins: {
     preflight: false, // Prevents Tailwind from overriding Ant Design styles
   },
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"], // Adjust paths based on your project
+content: ["./index.html", "./src/.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        primary :"#40513B"
+      }
+    },
   },
   plugins: [],
 };
