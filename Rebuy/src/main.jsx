@@ -12,8 +12,11 @@ createRoot(document.getElementById("root")).render(
           Button: {
             colorPrimary: "#405138",
             colorPrimaryHover: "#47c60c",
-            borderRadius: "0px",
+            borderRadius: "2px",
           },
+        },
+        token: {
+          borderRadius: "2px",
         },
       }}
     >
