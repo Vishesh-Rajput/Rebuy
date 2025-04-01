@@ -11,12 +11,13 @@ createRoot(document.getElementById("root")).render(
         components: {
           Button: {
             colorPrimary: "#405138",
-            colorPrimaryHover: "#47c60c",
+            colorPrimaryHover: "#0a910a",
             borderRadius: "2px",
           },
         },
         token: {
           borderRadius: "2px",
+          colorPrimary: "#405138",
         },
       }}
     >
