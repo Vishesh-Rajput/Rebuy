@@ -1,10 +1,24 @@
 import React from "react";
-import { Button, Divider, Form, Input } from "antd";
+import { Button, Divider, Form, Input, message } from "antd";
 import Link from "antd/es/typography/Link";
+import { RegisterUser } from "../../apicalls/users";
 
 function Register() {
-  const onFinish = (values) => {
-    console.log("succes", values);
+  const onFinish = async(values) => {
+
+    try {
+   const response = await RegisterUser(values);
+   if (response.success) {
+      message.success(response.message);
+    }
+    else {
+   throw new Error(response.message);
+    } 
+  }  
+    catch (error) {
+      message.error(error.message);
+    }
+
   };
   const rules = [
     {
