@@ -26,8 +26,7 @@ router.post("/register", async (req, res) => {
     //  user ko save kro
     const newUser = new User(req.body);
     await newUser.save();
-    res,
-      send({
+    res.send({
         success: true,
         message: "User registered successfully",
       });
@@ -44,7 +43,7 @@ router.post("/register", async (req, res) => {
 router.post("/login", async (req, res) => {
   try {
     //checking user
-    const user = await findOne({
+    const user = await User.findOne({
       email: req.body.email,
     });
     if (!user) {
