@@ -1,5 +1,5 @@
 {
-  "name": "rebuy-refurbhised-marketplace",
+  "name": "Rebuy: refurbhised-marketplace",
   "version": "1.0.0",
   "description": "MInor Full stack project by Vishesh and Tanuj ",
   "main": "index.js",
@@ -13,7 +13,7 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cloudinary": "^1.41.1",
-    "dotenv": "^16.3.1",
+    "dotenv": "^16.5.0",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.0.3",
@@ -22,8 +22,6 @@
     "react-datepicker": "^4.25.0"
   },
   "devDependencies": {
-  "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
+  }
 }
-
-}
-

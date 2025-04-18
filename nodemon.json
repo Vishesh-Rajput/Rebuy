@@ -1,0 +1,7 @@
+{
+  "watch": ["server"],
+  "ext": "js,json,env",
+  "ignore": ["client/*"],
+  "exec": "node -r dotenv/config server.js",
+  "verbose": true
+}
