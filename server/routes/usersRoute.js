@@ -3,7 +3,12 @@ const User = require("../models/userModel");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const authMiddleware = require("../middlewares/authMiddleware");
-// new user
+require("dotenv").config();
+
+
+// All the routes related to user authentication are defined here
+// user registration for new account 
+// 
 
 router.post("/register", async (req, res) => {
   try {
@@ -14,7 +19,10 @@ router.post("/register", async (req, res) => {
     }
 
     //hash password
-    const salt = await bcrypt.genSalt(12);
+    /*Hashing is a one-way mathematical function that converts the password into a
+     fixed-length string of characters that doesn’t reveal the original password.*/
+
+    const salt = await bcrypt.genSalt(12);   // number of rounds
     const hashPassword = await bcrypt.hash(req.body.password, salt);
     req.body.password = hashPassword;
 
@@ -58,13 +66,14 @@ router.post("/login", async (req, res) => {
     }
 
     // create and assign token
-    const token = jwt.sign({ userId: user._id }, process.env.jwt_secret);
+    const token = jwt.sign({ userId: user._id }, "masterkey");  
+                          //element to be encoded and secret key
 
     //send response
     res.send({
       success: true,
       message: "User logged in successfully",
-      data: token,
+      data: token,   // sending token instead of user data (flag)
     });
   } catch (error) {
     res.send({
@@ -111,7 +120,7 @@ router.get("/get-users", authMiddleware, async (req, res) => {
 });
 
 // update user status
-router.put("/update-user-status/:id", authMiddleware, async (req, res) => {
+router.put(":/update-user-status/id", authMiddleware, async (req, res) => {
   try {
     const user = await User.findByIdAndUpdate(req.params.id, req.body);
 
