@@ -6,16 +6,36 @@ import { LoginUser } from "../../apicalls/users";
 import { useDispatch } from "react-redux";
 import { SetLoader } from "../../redux/loadersSlice";
 
-const rules = [
+// Define email validation pattern
+const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+// Field validation rules
+const emailRules = [
   {
     required: true,
-    message: "required",
+    message: "Email is required",
+  },
+  {
+    pattern: emailPattern,
+    message: "Please enter a valid email address",
+  },
+];
+
+const passwordRules = [
+  {
+    required: true,
+    message: "Password is required",
+  },
+  {
+    min: 6,
+    message: "Password must be at least 6 characters",
   },
 ];
 
 function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const onFinish = async (values) => {
     try {
       dispatch(SetLoader(true));
@@ -48,11 +68,11 @@ function Login() {
         </h1>
         <Divider></Divider>
         <Form layout="vertical" onFinish={onFinish}>
-          <Form.Item label="Email" name="email" rules={rules}>
-            <Input placeholder="Email"></Input>
+          <Form.Item label="Email" name="email" rules={emailRules}>
+            <Input placeholder="Email" />
           </Form.Item>
-          <Form.Item label="Password" name="password" rules={rules}>
-            <Input type="password" placeholder="Password"></Input>
+          <Form.Item label="Password" name="password" rules={passwordRules}>
+            <Input type="password" placeholder="Password" />
           </Form.Item>
           <Button className="mt-2" type="primary" htmlType="submit" block>
             Submit

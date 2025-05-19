@@ -6,16 +6,48 @@ import { RegisterUser } from "../../apicalls/users";
 import { SetLoader } from "../../redux/loadersSlice";
 import { useDispatch } from "react-redux";
 
-const rules = [
+// Regex patterns
+const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const namePattern = /^[A-Za-z\s]{2,}$/;
+
+// Validation rules
+const nameRules = [
   {
     required: true,
-    message: "required",
+    message: "Name is required",
+  },
+  {
+    pattern: namePattern,
+    message: "Name must contain only letters and spaces (min 2 characters)",
+  },
+];
+
+const emailRules = [
+  {
+    required: true,
+    message: "Email is required",
+  },
+  {
+    pattern: emailPattern,
+    message: "Please enter a valid email address",
+  },
+];
+
+const passwordRules = [
+  {
+    required: true,
+    message: "Password is required",
+  },
+  {
+    min: 6,
+    message: "Password must be at least 6 characters",
   },
 ];
 
 function Register() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const onFinish = async (values) => {
     try {
       dispatch(SetLoader(true));
@@ -47,13 +79,13 @@ function Register() {
         </h1>
         <Divider></Divider>
         <Form layout="vertical" onFinish={onFinish}>
-          <Form.Item label="Name" name="name" rules={rules}>
+          <Form.Item label="Name" name="name" rules={nameRules}>
             <Input placeholder="Name"></Input>
           </Form.Item>
-          <Form.Item label="Email" name="email" rules={rules}>
+          <Form.Item label="Email" name="email" rules={emailRules}>
             <Input placeholder="Email"></Input>
           </Form.Item>
-          <Form.Item label="Password" name="password" rules={rules}>
+          <Form.Item label="Password" name="password" rules={passwordRules}>
             <Input type="password" placeholder="Password"></Input>
           </Form.Item>
           <Button className="mt-2" type="primary" htmlType="submit" block>

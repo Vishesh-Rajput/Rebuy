@@ -13,11 +13,11 @@ root.render(
     <ConfigProvider
       theme={{
         components: {
-          Button: {
-            colorPrimary: "#405138",
-            colorPrimaryHover: "405138",
-            borderRadius: "2px",
-          },
+          // Button: {
+          //   colorPrimary: "#405138",
+          //   colorPrimaryHover: "405138",
+          //   borderRadius: "2px",
+          // },
           token: {
             borderRadius: "2px",
             colorPrimary: "#405138",
